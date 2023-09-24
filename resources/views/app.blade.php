@@ -34,10 +34,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/todos">Tareas</a>
+                <a class="nav-link" href="/tareas">Tareas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/todos"> Categorias</a>
+                <a class="nav-link" href="/tareas"> Categorias</a>
               </li>
             </ul>
           </div>
