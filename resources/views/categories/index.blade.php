@@ -30,11 +30,11 @@
                 <div class="row py-1">
                   <div class="col-md-9 d-flex align-items-center">
                       <a class="d-flex align-items-center gap-2" href="{{route('categories.show', ['category' => $category->id])}}">
-                          <span class="color-container" style="background-color: {{$category->color}}"></span>{{$category->name}}
+                          <span class="color-container" style="background-color: {{$category->color}}"></span>{{$category->name}} 
                       </a>
                   </div>
                   <div class="col-md-3 d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{$category->id}}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#{{$category->id}}">
                       Eliminar
                     </button>                  
                   </div>
@@ -45,18 +45,19 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Cuidado!</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                      Al eliminar la categoría <strong>{{$category->name}}</strong> se eliminan todas las tareas relacionadas con la misma
+                      ¿Esta seguro que desea eliminar la categoría <strong>{{$category->name}}</strong>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <form action="{{route('categories.destroy', ['category'=> $category->id])}}">
+                      <form action="{{route('categories.destroy', ['category'=> $category->id])}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <button type="button" class="btn btn-primary">Eliminar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
                       </form>
                     </div>
                   </div>

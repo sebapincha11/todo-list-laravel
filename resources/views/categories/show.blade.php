@@ -3,8 +3,8 @@
 @section('content')
     <div class="container w-25 border p-4 mt-4"> 
         <div class="row mx-auto">
-            <form action="{{route('categories.index')}}" method="POST">
-                
+            <form action="{{route('categories.update', [$category->id])}}" method="POST">
+                @method('PATCH')
                 @csrf
 
                 @if (session('success'))
@@ -19,11 +19,34 @@
                 </div>
                 <div class="mb-3">
                     <label for="color" class="form-label">Color de la categoria</label>
-                    <input type="color" class="form-control" name="color">
+                    <input type="color" class="form-control" name="color" value="{{$category->color}}">
                 </div>
                   <button type="submit" class="btn btn-primary">Editar categoria</button>
 
             </form>
+            <div>
+              @if ($category->todos->count() > 0)
+              @foreach ( $category->todos as $todo )
+              <div class="row py-1">
+                <div class="col-md-9 d-flex align-items-center">
+                  <a href="{{route('todos-edit', ['id' => $todo->id])}}">{{$todo->title}}</a>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end">
+                  <form action="{{route('todos-destroy', [$todo->id])}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </form>
+                </div>
+              </div>
+                
+              @endforeach
+              @else
+              No hay tareas para esa categoría
+              @endif
+
+            </div>
         </div>
     </div>   
 @endsection
